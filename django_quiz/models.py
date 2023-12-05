@@ -2,12 +2,25 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Survey(models.Model):
-    title = models.CharField(max_length=256)
-    question = models.CharField(max_length=256)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    question = models.CharField(max_length=255)
+    is_open = models.BooleanField(default=True)
     
+    option1 = models.CharField(max_length=255)
+    option2 = models.CharField(max_length=255)
+    option3 = models.CharField(max_length=255)
+    option4 = models.CharField(max_length=255)
+    option5 = models.CharField(max_length=255)
+    
+    option1_results = models.IntegerField(max_length=255)
+    option2_results = models.IntegerField(max_length=255)
+    option3_results = models.IntegerField(max_length=255)
+    option4_results = models.IntegerField(max_length=255)
+    option5_results = models.IntegerField(max_length=255)
+
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         verbose_name = 'Survey'

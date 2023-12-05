@@ -24,11 +24,11 @@
                 </li>
                 {% if request.user.is_superuser %}
                 <li class="nav-item">
-                  <a class="nav-link" href="">Add Book</a>
+                  <a class="nav-link" href="{% url 'add_survey' %}">Add Survey</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                  <a class="nav-link" href="">My Books</a>
+                  <a class="nav-link" href="">My Surveys</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
