@@ -37,6 +37,12 @@ def add_survey(request):
     else:
         return render(request, 'pages/add-survey.html')
 
+def close_survey(request, id):
+    survey = Survey.objects.get(id=id)
+    survey.is_open = False
+    survey.save()
+    return redirect('my_surveys')
+
 def survey_details(request, id):
     survey = Survey.objects.get(id=id)
     return render(request, 'pages/survey-details.html', {'survey':survey})
@@ -47,4 +53,25 @@ def my_surveys(request):
 
 def answer_survey(request, id):
     survey = Survey.objects.get(id=id)
-    return render(request, 'pages/survey-details.html', {'survey':survey})
+    if request.method == 'POST':
+        option1_result = request.POST.get('option1_results')
+        option2_result = request.POST.get('option2_results')
+        option3_result = request.POST.get('option3_results')
+        option4_result = request.POST.get('option4_results')
+        option5_result = request.POST.get('option5_results')
+        if option1_result != None:
+            survey.option1_results += int(option1_result)
+        
+        if option2_result != None:
+            survey.option2_results += int(option2_result)
+
+        if option3_result != None:
+            survey.option3_results += int(option3_result)
+
+        if option4_result != None:
+            survey.option4_results += int(option4_result)
+
+        if option5_result != None:
+            survey.option5_results += int(option5_result)
+    survey.save()
+    return redirect('home')

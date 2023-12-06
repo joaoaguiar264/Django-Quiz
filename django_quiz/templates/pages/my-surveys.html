@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>My Surveys</title>
+<title>My Surveys | Django Survey</title>
 {% endblock %}
 
 {% block main %}
@@ -18,11 +18,15 @@
                     <li class="list-group-item">{{ survey.option2 }}</li>
                     <li class="list-group-item">{{ survey.option3 }}</li>
                     <li class="list-group-item">{{ survey.option4 }}</li>
+                    <li class="list-group-item">{{ survey.option5 }}</li>
                     </ul>
+                    {% if survey.is_open %}
+                    <a href="{% url 'close_survey' survey.id %}" class="btn btn-danger">Close Survey</a>
+                    {% endif %}
                 </div>
             </div>
             {% empty %}
-                <h1 class="text-white ">You don't have any surveys books.</h1>
+                <h1 class="text-white ">You don't have any surveys.</h1>
             {% endfor %}
             
         </div>

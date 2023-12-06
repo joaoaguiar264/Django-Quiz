@@ -13,11 +13,11 @@ class Survey(models.Model):
     option4 = models.CharField(max_length=255)
     option5 = models.CharField(max_length=255)
     
-    option1_results = models.IntegerField(max_length=255, default=0)
-    option2_results = models.IntegerField(max_length=255, default=0)
-    option3_results = models.IntegerField(max_length=255, default=0)
-    option4_results = models.IntegerField(max_length=255, default=0)
-    option5_results = models.IntegerField(max_length=255, default=0)
+    option1_results = models.IntegerField(default=0)
+    option2_results = models.IntegerField(default=0)
+    option3_results = models.IntegerField(default=0)
+    option4_results = models.IntegerField(default=0)
+    option5_results = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
