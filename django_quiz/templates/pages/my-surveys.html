@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>Django Survey</title>
+<title>My Surveys</title>
 {% endblock %}
 
 {% block main %}
-  <div class="background p-5">
-    {% if request.user.is_superuser %}
-    <a href="{% url 'add_survey' %}" class="btn btn-primary mb-4">Add New Survey</a>
-    {% endif %}
-    <div class="d-flex mt-2 flex-wrap" style="gap: 20px">
-        {% for survey in surveys %}
+    <div class="background p-5">
+        <div class="d-flex flex-wrap mt-2" style="gap: 20px">
+                
+            {% for survey in surveys %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <a class="card-title" href="{% url 'survey_details' survey.id %}">{{ survey.title }}</a>
+                  <h5 class="card-title">{{ survey.title }}</h5>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ survey.question }}</li>
                     <li class="list-group-item">{{ survey.option1 }}</li>
@@ -23,9 +21,10 @@
                     </ul>
                 </div>
             </div>
-        {% endfor %}
+            {% empty %}
+                <h1 class="text-white ">You don't have any surveys books.</h1>
+            {% endfor %}
+            
+        </div>
     </div>
-  </div>
 {% endblock %}
-
-        

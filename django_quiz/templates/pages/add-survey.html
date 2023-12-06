@@ -6,9 +6,10 @@
 
 {% block main %}
     <form method="POST" class="container p-5 mt-5 bg-dark border border-light" enctype="multipart/form-data" data-bs-theme="dark"> {% csrf_token %}
+        {% csrf_token %}
         <h1 class="text-white">Add New Survey</h1>
         <input class="form-control my-1 gap-2" type="text" name="title" placeholder="Title">
-        <textarea class="form-control my-1" type="textarea" name="question" placeholder="Question"></textarea>
+        <textarea class="form-control my-1" type="text" name="question" placeholder="Question"></textarea>
         <input class="form-control my-1" type="text" name="option1" placeholder="Option 1">
         <input class="form-control my-1" type="text" name="option2" placeholder="Option 2">
         <input class="form-control my-1" type="text" name="option3" placeholder="Option 3">
