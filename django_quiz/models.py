@@ -19,6 +19,8 @@ class Survey(models.Model):
     option4_results = models.IntegerField(default=0)
     option5_results = models.IntegerField(default=0)
 
+    respondents = models.ManyToManyField(User, related_name='surveys_responded', default=[], blank=True)
+
     def __str__(self):
         return self.title
 

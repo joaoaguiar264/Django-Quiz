@@ -41,7 +41,32 @@
                 <input type="submit" value="Save Answer" class="btn btn-primary mb-4">
             </form>
             {% else %}
-            <a></a>
+            <form action="" method="post" class="card-body">
+              {% csrf_token %}
+                <h5 class="card-text">{{ survey.question }} - RESULTS</h5>
+                <div class="form-check">
+                  <h2 class="form-check-label" for="option1">{{ survey.option1 }}</h2> 
+                  <h3 class="" type="text" id="text" name="option1_results" value="0">{{ survey.option1_results }}</h3>
+                  
+                </div>
+                <div class="form-check">
+                  <h2 class="form-check-label" for="option2">{{ survey.option2 }}</h2> 
+                  <h3 class="" type="text" id="text" name="option2_results" value="0">{{ survey.option2_results }}</h3>
+                </div>
+                <div class="form-check">
+                  <h2 class="form-check-label" for="option3">{{ survey.option3 }}</h2> 
+                  <h3 class="" type="text" id="text" name="option3_results" value="0">{{ survey.option3_results }}</h3>
+                  
+                </div>
+                <div class="form-check">
+                  <h2 class="form-check-label" for="option4">{{ survey.option4 }}</h2> 
+                  <h3 class="" type="text" id="text" name="option4_results" value="0">{{ survey.option4_results }}</h3>
+                </div>
+                <div class="form-check">
+                  <h2 class="form-check-label" for="option5">{{ survey.option5 }}</h2> 
+                  <h3 class="" type="text" id="text" name="option5_results" value="0">{{ survey.option5_results }}</h3>
+                </div>
+            </form>
             {% endif %}
           </div>
         </div>
