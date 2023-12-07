@@ -6,9 +6,6 @@
 
 {% block main %}
   <div class="background p-5">
-    {% if request.user.is_superuser %}
-    <a href="{% url 'add_survey' %}" class="btn btn-primary mb-4">Add New Survey</a>
-    {% endif %}
     {% if surveys %}
     <div class="table-responsive">
       <table class="table table-bordered table-striped">

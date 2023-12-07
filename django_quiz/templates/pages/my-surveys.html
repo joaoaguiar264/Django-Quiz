@@ -10,26 +10,26 @@
                 
             {% for survey in surveys %}
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                  <h5 class="card-title">{{ survey.title }}</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ survey.question }}</li>
-                    <li class="list-group-item">{{ survey.option1 }}</li>
-                    <li class="list-group-item">{{ survey.option2 }}</li>
+                <div class="card-body bg-dark border border-white">
+                  <h5 class="card-title text-white mb-4" align="center">{{ survey.title }}</h5>
+                  <ul class="list-group list-group-flush list-group-item-dark" style="gap: 5px">
+                    <li class="list-group-item rounded text-black">{{ survey.question }}</li>
+                    <li class="list-group-item rounded text-black">{{ survey.option1 }}</li>
+                    <li class="list-group-item rounded text-black">{{ survey.option2 }}</li>
                     {% if survey.option3 != "" %}
-                    <li class="list-group-item">{{ survey.option3 }}</li>
+                    <li class="list-group-item rounded text-black">{{ survey.option3 }}</li>
                     {% endif %}
                     {% if survey.option4 != "" %}
-                    <li class="list-group-item">{{ survey.option4 }}</li>
+                    <li class="list-group-item rounded text-black">{{ survey.option4 }}</li>
                     {% endif %}
                     {% if survey.option5 != "" %}
-                    <li class="list-group-item">{{ survey.option5 }}</li>
+                    <li class="list-group-item rounded text-black">{{ survey.option5 }}</li>
                     {% endif %}
                     </ul>
                     {% if survey.is_open %}
                     <a href="{% url 'close_survey' survey.id %}" class="btn btn-danger">Close Survey</a>
                     {% else %}
-                    <p class="alert alert-info">Survey closed</p>
+                    <p class="alert alert-info mt-4">Survey closed</p>
                     {% endif %}
                 </div>
             </div>

@@ -48,15 +48,15 @@
             {% else %}
             <form action="" method="post" class="card-body">
               {% csrf_token %}
-              <h5 class="card-text">{{ survey.question }} - RESULTS</h5>
+              <h5 class="card-text text-white">{{ survey.question }} - RESULTS</h5>
               <table class="table">
-                  <thead>
+                  <thead class="table-dark">
                       <tr>
                           <th>Option</th>
                           <th>Votes</th>
                       </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="table-dark">
                       <tr>
                           <td>{{ survey.option1 }}</td>
                           <td>{{ survey.option1_results }}</td>
