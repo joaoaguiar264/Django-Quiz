@@ -47,7 +47,7 @@ def close_survey(request, id):
     survey.save()
     survey_respondents = survey.respondents.all()
     for user in survey_respondents:
-        send_email("The Survey is Closed", f"The survey \"{survey.title}\" is closed\nRESULTS\n{survey.option1} - {survey.option1_results} Votes\n{survey.option2} - {survey.option2_results} Votes\n{survey.option3} - {survey.option3_results} Votes\n{survey.option4} - {survey.option4_results} Votes\n{survey.option5} - {survey.option5_results} Votes\n{datetime.now()}", user.email)
+        send_email("The Survey is Closed", f"The survey \"{survey.title}\" is closed\nRESULTS\n{survey.option1} - {survey.option1_results} Votes\n{survey.option2} - {survey.option2_results} Votes\n{survey.option3} - {survey.option3_results} Votes\n{survey.option4} - {survey.option4_results} Votes\n{survey.option5} - {survey.option5_results} Votes\n\n{datetime.now()}", user.email)
 
     return redirect('my_surveys')
     

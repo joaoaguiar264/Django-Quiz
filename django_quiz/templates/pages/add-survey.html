@@ -8,13 +8,43 @@
     <form method="POST" class="container p-5 mt-5 bg-dark border border-light" enctype="multipart/form-data" data-bs-theme="dark">
         {% csrf_token %}
         <h1 class="text-white">Add New Survey</h1>
-        <input class="form-control my-1 gap-2" type="text" name="title" placeholder="Title">
-        <textarea class="form-control my-1" type="text" name="question" placeholder="Question"></textarea>
-        <input class="form-control my-1" type="text" name="option1" placeholder="Option 1">
-        <input class="form-control my-1" type="text" name="option2" placeholder="Option 2">
-        <input class="form-control my-1" type="text" name="option3" placeholder="Option 3">
-        <input class="form-control my-1" type="text" name="option4" placeholder="Option 4">
-        <input class="form-control my-1" type="text" name="option5" placeholder="Option 5">
-        <button type="submit" class="btn btn-success mt-2 btn-lg flex-end">Add Survey</button>
+        <input class="form-control my-1 gap-2" id="title" type="text" name="title" placeholder="Title">
+        <textarea class="form-control my-1" type="text" id="q0" name="question" placeholder="Question"></textarea>
+        <input class="form-control my-1" type="text" id="q1" name="option1" placeholder="Option 1">
+        <input class="form-control my-1" type="text" id="q2" name="option2" placeholder="Option 2">
+        <input class="form-control my-1" type="text" id="q3" name="option3" placeholder="Option 3">
+        <input class="form-control my-1" type="text" id="q4" name="option4" placeholder="Option 4">
+        <input class="form-control my-1" type="text" id="q5" name="option5" placeholder="Option 5">
+        <button type="submit" id="btnCadastrar" class="btn btn-success mt-2 btn-lg flex-end" disabled >Add Survey</button>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("title").addEventListener("input", checkForm);
+            document.getElementById("q0").addEventListener("input", checkForm);
+            document.getElementById("q1").addEventListener("input", checkForm);
+            document.getElementById("q2").addEventListener("input", checkForm);
+            document.getElementById("q3").addEventListener("input", checkForm);
+            document.getElementById("q4").addEventListener("input", checkForm);
+            document.getElementById("q5").addEventListener("input", checkForm);
+        });
+    
+        function checkForm() {
+            var title = document.getElementById("title").value;
+            var q0 = document.getElementById("q0").value;
+            var q1 = document.getElementById("q1").value;
+            var q2 = document.getElementById("q2").value;
+            var q3 = document.getElementById("q3").value;
+            var q4 = document.getElementById("q4").value;
+            var q5 = document.getElementById("q5").value;
+    
+            var cadastrarBtn = document.getElementById("btnCadastrar");
+    
+            if (title.trim() !== "" && q0.trim() !== "" && q1.trim() !== "" && q2.trim() !== "") {
+                cadastrarBtn.disabled = false;
+            } else {
+                cadastrarBtn.disabled = true;
+            }
+        }
+    </script>
 {% endblock %}
+

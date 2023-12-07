@@ -1,72 +1,93 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>Survey Details</title>
+<title>Survey Details | Django Survey</title>
 {% endblock %}
 
 {% block main %}
 <div>
-  <div class="container"></div>
-  <h1 class="text-white">{{ survey.title }}</h1>
-    <div class="container card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
+  <div class="container"></div>`
+  <p></p>
+  <h1 class="text-white text-center mb-4">{{ survey.title }}</h1>
+  <p></p>
+    <div class="container border border-white" style="max-width: 540px;">
+        <div class="row no-gutters bg-dark outline-none">
           <div class="col-md-8">
             {% if survey.is_open %}
             <form action="{% url 'answer_survey' survey.id%}" method="post" class="card-body">
               {% csrf_token %}
-                <h5 class="card-text">{{ survey.question }}</h5>
+                <h5 class="card-text text-white mb-4 mt-4">{{ survey.question }}</h5>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="checkbox" name="option1_results" value="0">
-                  <label class="form-check-label" for="option1">{{ survey.option1 }}</label> 
+                  <input class="form-check-input mb-4" type="checkbox" id="checkbox" name="option1_results" value="0">
+                  <label class="form-check-label text-white mb-2" for="option1">{{ survey.option1 }}</label> 
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="checkbox" name="option2_results" value="0">
-                  <label class="form-check-label" for="option2">{{ survey.option2 }}</label> 
+                  <input class="form-check-input mb-2" type="checkbox" id="checkbox" name="option2_results" value="0">
+                  <label class="form-check-label text-white mb-2" for="option2">{{ survey.option2 }}</label> 
                 </div>
-
+                {% if survey.option3 != "" %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="checkbox" name="option3_results" value="0">
-                  <label class="form-check-label" for="option3">{{ survey.option3 }}</label> 
+                  <input class="form-check-input mb-2" type="checkbox" id="checkbox" name="option3_results" value="0">
+                  <label class="form-check-label text-white mb-2" for="option3">{{ survey.option3 }}</label> 
                 </div>
-
+                {% endif %}
+                {% if survey.option4 != "" %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="checkbox" name="option4_results" value="0">
-                  <label class="form-check-label" for="option4">{{ survey.option4 }}</label> 
+                  <input class="form-check-input mb-2" type="checkbox" id="checkbox" name="option4_results" value="0">
+                  <label class="form-check-label text-white mb-2" for="option4">{{ survey.option4 }}</label> 
                 </div>
-
+                {% endif %}
+                {% if survey.option5 != "" %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="checkbox" name="option5_results" value="0">
-                  <label class="form-check-label" for="option5">{{ survey.option5 }}</label> 
+                  <input class="form-check-input mb-2" type="checkbox" id="checkbox" name="option5_results" value="0">
+                  <label class="form-check-label text-white mb-2" for="option5">{{ survey.option5 }}</label> 
                 </div>
-                <input type="submit" value="Save Answer" class="btn btn-primary mb-4">
+                {% endif %}
+                <input type="submit" value="Save Answer" class="btn btn-primary mb-4 mt-4">
             </form>
             {% else %}
             <form action="" method="post" class="card-body">
               {% csrf_token %}
-                <h5 class="card-text">{{ survey.question }} - RESULTS</h5>
-                <div class="form-check">
-                  <h2 class="form-check-label" for="option1">{{ survey.option1 }}</h2> 
-                  <h3 class="" type="text" id="text" name="option1_results" value="0">{{ survey.option1_results }}</h3>
-                  
-                </div>
-                <div class="form-check">
-                  <h2 class="form-check-label" for="option2">{{ survey.option2 }}</h2> 
-                  <h3 class="" type="text" id="text" name="option2_results" value="0">{{ survey.option2_results }}</h3>
-                </div>
-                <div class="form-check">
-                  <h2 class="form-check-label" for="option3">{{ survey.option3 }}</h2> 
-                  <h3 class="" type="text" id="text" name="option3_results" value="0">{{ survey.option3_results }}</h3>
-                  
-                </div>
-                <div class="form-check">
-                  <h2 class="form-check-label" for="option4">{{ survey.option4 }}</h2> 
-                  <h3 class="" type="text" id="text" name="option4_results" value="0">{{ survey.option4_results }}</h3>
-                </div>
-                <div class="form-check">
-                  <h2 class="form-check-label" for="option5">{{ survey.option5 }}</h2> 
-                  <h3 class="" type="text" id="text" name="option5_results" value="0">{{ survey.option5_results }}</h3>
-                </div>
-            </form>
+              <h5 class="card-text">{{ survey.question }} - RESULTS</h5>
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Option</th>
+                          <th>Votes</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>{{ survey.option1 }}</td>
+                          <td>{{ survey.option1_results }}</td>
+                      </tr>
+                      <tr>
+                          <td>{{ survey.option2 }}</td>
+                          <td>{{ survey.option2_results }}</td>
+                      </tr>
+                      
+                      {% if survey.option3 != "" %}
+                      <tr>
+                          <td>{{ survey.option3 }}</td>
+                          <td>{{ survey.option3_results }}</td>
+                      </tr>
+                      {% endif %}
+                      {% if survey.option4 != "" %}
+                      <tr>
+                          <td>{{ survey.option4 }}</td>
+                          <td>{{ survey.option4_results }}</td>
+                      </tr>
+                      {% endif %}
+                      {% if survey.option5 != "" %}
+                      <tr>
+                          <td>{{ survey.option5 }}</td>
+                          <td>{{ survey.option5_results }}</td>
+                      </tr>
+                      {% endif %}
+                  </tbody>
+              </table>
+          </form>
+          
             {% endif %}
           </div>
         </div>

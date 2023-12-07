@@ -16,12 +16,20 @@
                     <li class="list-group-item">{{ survey.question }}</li>
                     <li class="list-group-item">{{ survey.option1 }}</li>
                     <li class="list-group-item">{{ survey.option2 }}</li>
+                    {% if survey.option3 != "" %}
                     <li class="list-group-item">{{ survey.option3 }}</li>
+                    {% endif %}
+                    {% if survey.option4 != "" %}
                     <li class="list-group-item">{{ survey.option4 }}</li>
+                    {% endif %}
+                    {% if survey.option5 != "" %}
                     <li class="list-group-item">{{ survey.option5 }}</li>
+                    {% endif %}
                     </ul>
                     {% if survey.is_open %}
                     <a href="{% url 'close_survey' survey.id %}" class="btn btn-danger">Close Survey</a>
+                    {% else %}
+                    <p class="alert alert-info">Survey closed</p>
                     {% endif %}
                 </div>
             </div>

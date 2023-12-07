@@ -9,22 +9,28 @@
     {% if request.user.is_superuser %}
     <a href="{% url 'add_survey' %}" class="btn btn-primary mb-4">Add New Survey</a>
     {% endif %}
-    <div class="d-flex mt-2 flex-wrap" style="gap: 20px">
-        {% for survey in surveys %}
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                  <a class="card-title" href="{% url 'survey_details' survey.id %}">{{ survey.title }}</a>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ survey.question }}</li>
-                    <li class="list-group-item">{{ survey.option1 }}</li>
-                    <li class="list-group-item">{{ survey.option2 }}</li>
-                    <li class="list-group-item">{{ survey.option3 }}</li>
-                    <li class="list-group-item">{{ survey.option4 }}</li>
-                    </ul>
-                </div>
-            </div>
+    {% if surveys %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col ">Title</th>
+            <th scope="col">Question</th>
+          </tr>
+        </thead>
+        <tbody class="table-dark">
+          {% for survey in surveys %}
+          <tr>
+            <td><a href="{% url 'survey_details' survey.id %}">{{ survey.title }}</a></td>
+            <td>{{ survey.question }}</td>
+          </tr>
         {% endfor %}
+        </tbody>
+      </table>
     </div>
+  {% else %}
+  <p class="alert alert-info">There is no surveys at the moment.</p>
+  {% endif %}
   </div>
 {% endblock %}
 
